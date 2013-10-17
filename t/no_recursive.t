@@ -15,6 +15,8 @@ foreach my $impl (qw( Moo Moose ))
       with 'Role::IncHook::NoRecursive';
       sub Inker::IMPLEMENTATION::INC {
         my($self, $filename) = @_;
+        return unless $filename =~ /^[FB]oo\//;
+        
         Test::More::note("filename = $filename");
     
         my $class = $filename;
@@ -42,7 +44,7 @@ foreach my $impl (qw( Moo Moose ))
     note "@INC before:";
     note "  $_" for @INC;
 
-    push @INC, $inker;
+    unshift @INC, $inker;
 
     note "@INC after:";
     note "  $_" for @INC;
@@ -61,6 +63,6 @@ foreach my $impl (qw( Moo Moose ))
 
     is "Boo::Bar::Bum::$impl"->one, 1, "Boo::Bar::Bum::$impl->one = 1";
   
-    pop @INC;
+    shift @INC;
   }
 }
