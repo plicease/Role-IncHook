@@ -1,4 +1,4 @@
-package Role::IncHook::NoRecursive;
+package Role::IncHook::NoRecursion;
 
 use strict;
 use Moo::Role;

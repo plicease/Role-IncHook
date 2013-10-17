@@ -12,7 +12,7 @@ foreach my $impl (qw( Moo Moose ))
       package Inker::IMPLEMENTATION;
   
       use IMPLEMENTATION;
-      with 'Role::IncHook::NoRecursive';
+      with 'Role::IncHook::NoRecursion';
       sub Inker::IMPLEMENTATION::INC {
         my($self, $filename) = @_;
         return unless $filename =~ /^[FB]oo\//;
@@ -35,7 +35,7 @@ foreach my $impl (qw( Moo Moose ))
 
     my $inker = "Inker::$impl"->new;
     isa_ok $inker, "Inker::$impl";
-    ok eval { $inker->does('Role::IncHook::NoRecursive') }, "does Role::IncHook::NoRecursive";
+    ok eval { $inker->does('Role::IncHook::NoRecursion') }, "does Role::IncHook::NoRecursion";
     eval $@ if $@;
 
     ok eval { $inker->can('INC') }, "can INC";
