@@ -5,6 +5,7 @@ Roles for use in writing @INC Hooks
 # SEE ALSO
 
 - [require](http://search.cpan.org/perldoc?perlfunc\#require)
+- [@INC](http://search.cpan.org/perldoc?perlvar\#INC)
 - [only::latest](http://search.cpan.org/perldoc?only::latest)
 - [Devel::INC::Sorted](http://search.cpan.org/perldoc?Devel::INC::Sorted)
 - [Array::Sticky::INC](http://search.cpan.org/perldoc?Array::Sticky::INC)

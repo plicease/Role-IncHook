@@ -21,6 +21,10 @@ L<require|perlfunc#require>
 
 =item
 
+L<@INC|perlvar#INC>
+
+=item
+
 L<only::latest>
 
 =item
