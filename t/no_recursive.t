@@ -6,7 +6,7 @@ eval {
   package Inker;
   
   use Moo;
-  with 'Role::NonRecursiveIncHook';
+  with 'Role::IncHook::NoRecursive';
   sub Inker::INC {
     my($self, $filename) = @_;
     Test::More::note("filename = $filename");
@@ -25,7 +25,7 @@ diag $@ if $@;
 
 my $inker = Inker->new;
 isa_ok $inker, 'Inker';
-ok eval { $inker->does('Role::NonRecursiveIncHook') }, "does Role::NonRecursiveIncHook";
+ok eval { $inker->does('Role::IncHook::NoRecursive') }, "does Role::IncHook::NoRecursive";
 eval $@ if $@;
 
 ok eval { $inker->can('INC') }, "can INC";
