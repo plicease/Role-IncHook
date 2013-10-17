@@ -6,7 +6,7 @@ foreach my $impl (qw( Moo Moose ))
 {
   subtest $impl => sub {
     plan skip_all => "test requires $impl" unless eval q{ require "$impl.pm"; 1 };
-    plan tests => 9;
+    plan tests => 10;
 
     my $code = q{
       package Inker::IMPLEMENTATION;
@@ -15,15 +15,25 @@ foreach my $impl (qw( Moo Moose ))
       with 'Role::IncHook::NoRecursion';
       sub Inker::IMPLEMENTATION::INC {
         my($self, $filename) = @_;
-        return unless $filename =~ /^[FB]oo\//;
         
-        Test::More::note("filename = $filename");
-    
         my $class = $filename;
         $class =~ s/\.pm$//;
         $class =~ s/\//::/g;
 
-        Test::More::note("class = $class");
+        Test::More::note("filename = $filename");    
+        Test::More::note("class    = $class");
+        return unless $filename =~ /^[FB]oo\//;
+    
+        if($class =~ /^Foo::Recursive::${impl}::(\d+)$/)
+        {
+          my $num = $1;
+          my $next = $num+1;
+          
+          die "deep recursion!" if $num == 5;
+          
+          open my $fh, '<', \"package Foo::Recursive::${impl}::$1; use Foo::Recursive::${impl}::$next; 1;";
+          return $fh;
+        }
     
         open my $fh, '<', \"package $class; sub one { 1 }; 1";
         return $fh;
@@ -41,12 +51,13 @@ foreach my $impl (qw( Moo Moose ))
     ok eval { $inker->can('INC') }, "can INC";
     eval $@ if $@;;
 
-    note "@INC before:";
+    note "\@INC before:";
     note "  $_" for @INC;
 
+    local @INC = @INC;
     unshift @INC, $inker;
 
-    note "@INC after:";
+    note "\@INC after:";
     note "  $_" for @INC;
 
     ok !$INC{"Foo/Bar/Baz/$impl.pm"}, "Foo::Bar::Baz::$impl not loaded";
@@ -63,6 +74,12 @@ foreach my $impl (qw( Moo Moose ))
 
     is "Boo::Bar::Bum::$impl"->one, 1, "Boo::Bar::Bum::$impl->one = 1";
   
-    shift @INC;
+    eval qq{
+      require Foo::Recursive::${impl}::1;
+    };
+    my $error = $@;
+    
+    unlike $error, qr{deep recursion}, "didn't die from deep recursion";
+    note $error;
   }
 }

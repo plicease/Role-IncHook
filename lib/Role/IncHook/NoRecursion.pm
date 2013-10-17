@@ -9,4 +9,18 @@ use warnings NONFATAL => 'all';
 
 requires 'INC';
 
+has already_including => (
+  is      => 'rw',
+  default => 0,
+);
+
+around INC => sub {
+  my($orig, $self, $filename) = @_;
+  return if $self->already_including;
+  $self->already_including(1);
+  my @ret = $orig->($self, $filename);
+  $self->already_including(0);
+  @ret;
+};
+
 1;
