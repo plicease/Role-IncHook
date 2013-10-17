@@ -1,4 +1,6 @@
 ExtUtils::MakeMaker
 Moo
 Moo::Role
+Moose
+Moose::Role
 Test::More
