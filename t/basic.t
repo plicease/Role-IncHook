@@ -9,13 +9,13 @@ eval {
   with 'Role::NonRecursiveIncHook';
   sub Inker::INC {
     my($self, $filename) = @_;
-    Test::More::diag("filename = $filename");
+    Test::More::note("filename = $filename");
     
     my $class = $filename;
     $class =~ s/\.pm$//;
     $class =~ s/\//::/g;
 
-    Test::More::diag("class = $class");
+    Test::More::note("class = $class");
     
     open my $fh, '<', \"package $class; sub one { 1 }; 1";
     return $fh;
