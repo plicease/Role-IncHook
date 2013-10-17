@@ -10,3 +10,23 @@ use warnings NONFATAL => 'all';
 requires 'INC';
 
 1;
+
+=head1 SEE ALSO
+
+=over 4
+
+=item
+
+L<only::latest>
+
+=item
+
+L<Devel::INC::Sorted>
+
+=item
+
+L<Array::Sticky::INC>
+
+=back
+
+=cut
