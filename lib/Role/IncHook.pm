@@ -17,6 +17,10 @@ requires 'INC';
 
 =item
 
+L<require|perlfunc#require>
+
+=item
+
 L<only::latest>
 
 =item
