@@ -1,7 +1,8 @@
 language: perl
 
-#install:
-#  - cpanm -n Foo::Bar
+install:
+  - cpanm -n Moo
+  - cpanm -n Moose
 
 perl:
   - "5.10"

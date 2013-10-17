@@ -1,4 +1,4 @@
-# Role::IncHook
+# Role::IncHook [![Build Status](https://secure.travis-ci.org/plicease/Role-IncHook.png)](http://travis-ci.org/plicease/Role-IncHook)
 
 Roles for use in writing @INC Hooks
 
