@@ -4,7 +4,7 @@ use strict;
 use Moo::Role;
 use warnings NONFATAL => 'all';
 
-# ABSTRACT: Role that adds a @INC hook that won't accidentally recurse infinitely
+# ABSTRACT: Role for an @INC hook that won't accidentally recurse infinitely
 # VERSION
 
 =head1 SYNOPSIS
@@ -58,6 +58,10 @@ around INC => sub {
 =item
 
 L<Role::IncHook>
+
+=item
+
+L<Role::IncHook::AddAndRemovable>
 
 =back
 

@@ -62,6 +62,12 @@ L<Role::IncHook::NoRecursion>
 
 An @INC hook role that aggressively avoids unintended recursion.
 
+=item
+
+L<Role::IncHook::AddAndRemovable>
+
+An @INC hook role with methods to activate and remove the @INC hook.
+
 =back
 
 =head1 SEE ALSO
