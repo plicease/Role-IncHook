@@ -46,7 +46,7 @@ This role adds methods to activate, remove an @INC hook class.
 
 =head2 INC
 
-You definte this method in your class.  See L<perlfunc#require> for details.
+You define this method in your class.  See L<perlfunc#require> for details.
 
 =cut
 
