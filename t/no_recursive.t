@@ -2,6 +2,8 @@ use strict;
 use warnings;
 use Test::More tests => 2;
 
+require Role::IncHook::NoRecursion;
+
 foreach my $impl (qw( Moo Moose ))
 {
   subtest $impl => sub {
@@ -31,7 +33,8 @@ foreach my $impl (qw( Moo Moose ))
           
           die "deep recursion!" if $num == 5;
           
-          open my $fh, '<', \"package Foo::Recursive::${impl}::$1; use Foo::Recursive::${impl}::$next; 1;";
+          eval q{ Foo::Recursive::${impl}::$next };
+          open my $fh, '<', \"package Foo::Recursive::${impl}::$1; 1;";
           return $fh;
         }
     
