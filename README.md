@@ -47,6 +47,10 @@ requirement for a @INC hook.
 
     An @INC hook role that aggressively avoids unintended recursion.
 
+- [Role::IncHook::AddAndRemovable](http://search.cpan.org/perldoc?Role::IncHook::AddAndRemovable)
+
+    An @INC hook role with methods to activate and remove the @INC hook.
+
 # SEE ALSO
 
 Here is a collection of documentation on @INC, some examples of

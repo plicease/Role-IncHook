@@ -3,4 +3,5 @@ Moo
 Moo::Role
 Moose
 Moose::Role
+Scalar::Util
 Test::More
