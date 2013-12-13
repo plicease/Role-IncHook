@@ -43,11 +43,11 @@ requirement for a @INC hook.
 
 ## Related Roles
 
-- [Role::IncHook::NoRecursion](http://search.cpan.org/perldoc?Role::IncHook::NoRecursion)
+- [Role::IncHook::NoRecursion](https://metacpan.org/pod/Role::IncHook::NoRecursion)
 
     An @INC hook role that aggressively avoids unintended recursion.
 
-- [Role::IncHook::AddAndRemovable](http://search.cpan.org/perldoc?Role::IncHook::AddAndRemovable)
+- [Role::IncHook::AddAndRemovable](https://metacpan.org/pod/Role::IncHook::AddAndRemovable)
 
     An @INC hook role with methods to activate and remove the @INC hook.
 
@@ -57,45 +57,45 @@ Here is a collection of documentation on @INC, some examples of
 @INC hooks being used on CPAN, and tools related to @INC and
 @INC hooks.
 
-- [require](http://search.cpan.org/perldoc?perlfunc\#require)
+- [require](https://metacpan.org/pod/perlfunc#require)
 
     The documentation for the Perl built-in `require` includes information
     on implementing an @INC hook (either as a callback function or a class).
 
-- [@INC](http://search.cpan.org/perldoc?perlvar\#INC)
+- [@INC](https://metacpan.org/pod/perlvar#INC)
 
     Description of @INC itself to which you will be hooking into.
 
-- [only::latest](http://search.cpan.org/perldoc?only::latest)
+- [only::latest](https://metacpan.org/pod/only::latest)
 
     An @INC hook implemented as a compile time pragma that forces the latest
     version of a module to be loaded regardless of where it appears in the
     @INC list.
 
-- [Devel::Hide](http://search.cpan.org/perldoc?Devel::Hide)
+- [Devel::Hide](https://metacpan.org/pod/Devel::Hide)
 
     This module hides one or more modules, which is handy for testing code which needs
     to work without certain modules when they are already installed on your Perl.
     This is implemented using an @INC hook.
 
-- [Log::Log4perl::Resurrector](http://search.cpan.org/perldoc?Log::Log4perl::Resurrector)
+- [Log::Log4perl::Resurrector](https://metacpan.org/pod/Log::Log4perl::Resurrector)
 
-    This module converts commented out [Log::Log4perl](http://search.cpan.org/perldoc?Log::Log4perl) statements in Perl code (using
-    a special syntax) into uncommented [Log::Log4perl](http://search.cpan.org/perldoc?Log::Log4perl) statements.  It is handy for 
-    including [Log::Log4perl](http://search.cpan.org/perldoc?Log::Log4perl) in a module without making it a dependency.  This is implemented
+    This module converts commented out [Log::Log4perl](https://metacpan.org/pod/Log::Log4perl) statements in Perl code (using
+    a special syntax) into uncommented [Log::Log4perl](https://metacpan.org/pod/Log::Log4perl) statements.  It is handy for 
+    including [Log::Log4perl](https://metacpan.org/pod/Log::Log4perl) in a module without making it a dependency.  This is implemented
     using an @INC hook.
 
-- [Test::Clustericious::Cluster](http://search.cpan.org/perldoc?Test::Clustericious::Cluster)
+- [Test::Clustericious::Cluster](https://metacpan.org/pod/Test::Clustericious::Cluster)
 
     This module (among other things) adds an @INC hook to your test script which allows you
     to specify modules in the `__DATA__` section of your test.  This allows tests the loading
     of modules, while the test itself remains self contained.
 
-- [Devel::INC::Sorted](http://search.cpan.org/perldoc?Devel::INC::Sorted)
+- [Devel::INC::Sorted](https://metacpan.org/pod/Devel::INC::Sorted)
 
     Module that keeps @INC sorted allowing you to keep certain hooks at the beginning of @INC.
 
-- [Array::Sticky::INC](http://search.cpan.org/perldoc?Array::Sticky::INC)
+- [Array::Sticky::INC](https://metacpan.org/pod/Array::Sticky::INC)
 
     This module keeps the first entry in the @INC array at the beginning so that your @INC hook
     can't be replaced by something else.
