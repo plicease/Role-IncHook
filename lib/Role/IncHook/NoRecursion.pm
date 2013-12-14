@@ -2,6 +2,7 @@ package Role::IncHook::NoRecursion;
 
 use strict;
 use Moo::Role;
+use v5.14;
 use warnings NONFATAL => 'all';
 
 # ABSTRACT: Role for an @INC hook that won't accidentally recurse infinitely
@@ -43,6 +44,7 @@ has _already_including => (
 around INC => sub {
   my($orig, $self, $filename) = @_;
   return if $self->_already_including;
+  print '_already_including = ' . $self->_already_including . "\n";
   $self->_already_including(1);
   my @ret = $orig->($self, $filename);
   $self->_already_including(0);

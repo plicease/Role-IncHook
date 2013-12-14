@@ -1,4 +1,4 @@
-ExtUtils::MakeMaker
+Module::Build
 Moo
 Moo::Role
 Moose
