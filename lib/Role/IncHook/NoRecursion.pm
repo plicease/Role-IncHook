@@ -1,9 +1,8 @@
 package Role::IncHook::NoRecursion;
 
-use 5.14.0;
-use Moo::Role;
-use v5.14;
-use warnings NONFATAL => 'all';
+use strict;
+use warnings;
+use Role::Tiny;
 
 # ABSTRACT: Role for an @INC hook that won't accidentally recurse infinitely
 # VERSION
@@ -36,15 +35,16 @@ the @INC hook, on a particular module, it will skip it.
 
 requires 'INC';
 
-has _in_use => (
-  is      => 'rw',
-  default => 0,
-);
+sub _in_use
+{
+  my($self, $new_value) = @_;
+  $self->{_in_use} = $new_value if defined $new_value;
+  $self->{_in_use};
+}
 
 around INC => sub {
   my($orig, $self, $filename) = @_;
   return if $self->_in_use;
-  print '_in_use = ' . $self->_in_use . "\n";
   $self->_in_use(1);
   my @ret = $orig->($self, $filename);
   $self->_in_use(0);

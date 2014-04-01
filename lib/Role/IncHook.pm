@@ -1,6 +1,6 @@
 package Role::IncHook;
 
-use 5.14.0;
+use strict;
 use Moo::Role;
 use warnings NONFATAL => 'all';
 

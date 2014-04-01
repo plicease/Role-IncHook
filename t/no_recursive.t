@@ -1,14 +1,13 @@
 use strict;
 use warnings;
-use Test::More tests => 2;
+use Test::More tests => 20;
 
 require Role::IncHook::NoRecursion;
 
 foreach my $impl (qw( Moo Moose ))
 {
-  subtest $impl => sub {
-    plan skip_all => "test requires $impl" unless eval q{ require "$impl.pm"; 1 };
-    plan tests => 10;
+  SKIP: {
+    skip "test requires $impl" unless eval q{ require "$impl.pm"; 1 }, 10;
 
     my $code = q{
       package Inker::IMPLEMENTATION;
@@ -76,7 +75,7 @@ foreach my $impl (qw( Moo Moose ))
     diag $@ if $@;
 
     is "Boo::Bar::Bum::$impl"->one, 1, "Boo::Bar::Bum::$impl->one = 1";
-  
+
     eval qq{
       require Foo::Recursive::${impl}::1;
     };
@@ -84,5 +83,5 @@ foreach my $impl (qw( Moo Moose ))
     
     unlike $error, qr{deep recursion}, "didn't die from deep recursion";
     note $error;
-  }
+  };
 }
