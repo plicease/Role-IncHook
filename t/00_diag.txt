@@ -1,7 +1,6 @@
-ExtUtils::MakeMaker
+Module::Build
 Moo
 Moo::Role
 Moose
 Moose::Role
-Scalar::Util
 Test::More
