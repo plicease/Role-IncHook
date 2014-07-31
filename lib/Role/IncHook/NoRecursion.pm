@@ -1,8 +1,7 @@
 package Role::IncHook::NoRecursion;
 
-use 5.14.0;
+use 5.014;
 use Moo::Role;
-use v5.14;
 use warnings NONFATAL => 'all';
 
 # ABSTRACT: Role for an @INC hook that won't accidentally recurse infinitely
