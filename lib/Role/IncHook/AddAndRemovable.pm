@@ -2,7 +2,6 @@ package Role::IncHook::AddAndRemovable;
 
 use 5.014;
 use Moo::Role;
-use warnings NONFATAL => 'all';
 use Scalar::Util qw( refaddr );
 
 # ABSTRACT: Role for an @INC hook with hook and unhook methods

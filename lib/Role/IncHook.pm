@@ -2,7 +2,6 @@ package Role::IncHook;
 
 use 5.014;
 use Moo::Role;
-use warnings NONFATAL => 'all';
 
 # ABSTRACT: Roles for use in writing @INC Hooks
 # VERSION
