@@ -10,7 +10,7 @@ foreach my $impl (qw( Moo Moose ))
     plan skip_all => "test requires $impl" unless eval q{ require "$impl.pm"; 1 };
     plan tests => 10;
 
-    my $code = q{
+    my $code = '# line '. __LINE__ . ' "' . __FILE__ . qq("\n) . q{
       package Inker::IMPLEMENTATION;
   
       use IMPLEMENTATION;
@@ -33,7 +33,7 @@ foreach my $impl (qw( Moo Moose ))
           
           die "deep recursion!" if $num == 5;
           
-          eval q{ Foo::Recursive::${impl}::$next };
+          eval '# line '. __LINE__ . ' "' . __FILE__ . qq("\n) . q{ package Foo::Recursive::${impl}::$next };
           open my $fh, '<', \"package Foo::Recursive::${impl}::$1; 1;";
           return $fh;
         }
@@ -49,10 +49,10 @@ foreach my $impl (qw( Moo Moose ))
     my $inker = "Inker::$impl"->new;
     isa_ok $inker, "Inker::$impl";
     ok eval { $inker->does('Role::IncHook::NoRecursion') }, "does Role::IncHook::NoRecursion";
-    eval $@ if $@;
+    diag $@ if $@;
 
     ok eval { $inker->can('INC') }, "can INC";
-    eval $@ if $@;;
+    diag $@ if $@;;
 
     note "\@INC before:";
     note "  $_" for @INC;
@@ -72,12 +72,12 @@ foreach my $impl (qw( Moo Moose ))
 
     ok $INC{"Foo/Bar/Baz/$impl.pm"}, "Foo::Bar::Baz::$impl not loaded";
 
-    ok eval "require Boo::Bar::Bum::$impl";
+    ok eval '# line '. __LINE__ . ' "' . __FILE__ . qq("\n) . "require Boo::Bar::Bum::$impl";
     diag $@ if $@;
 
     is "Boo::Bar::Bum::$impl"->one, 1, "Boo::Bar::Bum::$impl->one = 1";
   
-    eval qq{
+    eval '# line '. __LINE__ . ' "' . __FILE__ . qq("\n) . qq{
       require Foo::Recursive::${impl}::1;
     };
     my $error = $@;
