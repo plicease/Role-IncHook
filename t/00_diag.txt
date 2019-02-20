@@ -1,6 +1,0 @@
-Module::Build
-Moo
-Moo::Role
-Moose
-Moose::Role
-Test::More
