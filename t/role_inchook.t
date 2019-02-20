@@ -1,12 +1,11 @@
 use strict;
 use warnings;
-use Test::More tests => 2;
+use Test::More;
 
 foreach my $impl (qw( Moo Moose ))
 {
   subtest $impl => sub {
     plan skip_all => "test requires $impl" unless eval q{ require "$impl.pm"; 1 };
-    plan tests => 1;
     my $class = "Foo::$impl";
     eval qq{
       package $class;
@@ -21,3 +20,5 @@ foreach my $impl (qw( Moo Moose ))
     isa_ok $obj, $class;
   };
 }  
+
+done_testing;
